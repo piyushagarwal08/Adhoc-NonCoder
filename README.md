@@ -41,6 +41,7 @@ pip install memory-profiler
 $ python -m memory_profiler example.py
 ```
 *   Finally the program
+
 ```python
 @profile
 def my_func():
@@ -105,6 +106,7 @@ apt-get install alacarte
 
 ## Task 15 No of lines word characters count in python
 *   To do this task you should have knowledge about file handling and string functions.
+
 ```py
 filename = input("Please Enter a file name ")
 myfile=open(filename)
@@ -125,7 +127,8 @@ print("No of Characters :   ",charCount)
 ## Task 16 Count no of lines word character without saving data in a file
 *   Run this program and this will ask user to enter input and to stop the input statement I have specified to use a word ```done``` to break the loop and give results.
 *   Since this program will run on RAM there is no additional file write on hard disk or any other secondary storage.
-```py
+
+```python
 wordCount = 0
 lineCount = 0
 charCount = 0
@@ -189,6 +192,7 @@ lid GROUPNAME
 
 ## Task 22 How to add multiple users in a group at once
 *   For this I have developed a program for performing this task
+
 ```py
 # usermod -G tech username
 import subprocess
@@ -269,5 +273,278 @@ Notes for Day 7 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST
 ## Task 30 Make a camera working to connect with other OS
 * Pending
 
-## Task  Build a Qr code reader in python to scan the value and print it
+## Task 31 Build a Qr code reader in python to scan the value and print it
 *   Pending
+
+## Task 32 Create a program that asks the user to enter their name and their age,Print out a message that will tell them the year that they will turn 95 years old.
+```python
+#!/usr/bin/python3
+import time
+name = input('Enter your name: ')
+age = int(input('Enter your age: '))
+years = 95 - age
+print(f'{name} you will turn 95 in year',time.localtime().tm_year+years)          
+```
+
+## Task 33 write a code using  that will take user input from and search on google and store top 10 url in the list.
+### conditions :
+  ###  i )   URL must be stored permanently as well
+  ###  ii)   user can give input using keyboard and  voice both
+```python
+#!/usr/bin/python3
+from googlesearch import search
+import time
+web=input('pls enter topic:')
+
+# now time for search
+list1 = []
+for i in search(web,stop=10):
+	print(i) # i will only print the url
+	time.sleep(1)
+	list1.append(i)
+print(list1)
+f = open('url.txt','a+')
+for i in list1:
+	f.write(i+'\n')
+f.close()
+```
+
+## Task 34 take a list say  adhoc=[1,2,3,1,4,5,66,22,2,6,0,9],write the program that will do  i)  print only those numbers greater than 5,ii)  also print those numbers those are less than or  equals to 2  ( <= 2 ), iii)  store these answers in in two different list also
+```python
+#!/usr/bin/python3
+adhoc = [1,2,3,1,4,5,66,22,2,6,0,9]
+five = [i for i in adhoc if i > 5]
+two = [i for i in adhoc if i <= 2]
+print('Numbers greater then 5')
+for i in five:
+	print(i)
+print(five)
+print('Numbers less than or equals to 2')
+for i in two:
+	print(i)
+print(two)
+```
+
+## Task 35 ake all input from user . i)  check that all character are string, ii)  if all char are string then create user in your linux based OS, iii)  also create password for same user , password will, password will be  ===>>     hello{username}
+```python
+#!/usr/bin/python3
+import os
+import string
+user_name = input('Enter user-name: ')
+flag = 0
+for i in list(user_name):
+	if i not in string.ascii_letters:
+		print('incorrect username')
+		flag = 1
+if flag == 0 :
+	os.system(f'sudo useradd -p $(openssl passwd -1 hello+{user_name}) '+ user_name)
+```
+
+## Task 36 write a code  will take  input as your name and greet you with, good morning , good evening , goodafter noon , good night as per the current time your system :
+```python
+#!/usr/bin/python3
+import time
+name = input('Enter your name: ')
+hr = time.localtime().tm_hour
+min = time.localtime().tm_min
+
+if hr>=12 and hr<17:
+	print('Good Afternoon',name)
+elif hr>=17 and hr<20:
+	print('Good Evening',name)
+elif hr>=20 and hr<24:
+	print('Good Night',name)
+else:
+	print('Good Morning',name)
+```
+
+## Task 37 use file handling to create a linux command  similar to cat .test at least  4 cases and options of cat command, compare the difference of cat command and post the result
+```python
+#!/usr/bin/python3
+
+print('''
+1. to show contents of single file
+2. to show contents of multiple file
+3. insert using cat
+4. display line numbers in file -n
+''')
+option = input('Select an option: ')
+if option == '1':
+	file_name = input('Enter file name: ')
+	fhand = open(file_name)
+	print(fhand.read())
+	fhand.close()
+elif option == '2':
+	file_name = input('Enter file names: ').split()
+	for i in file_name:
+		fhand = open(i)
+		print(fhand.read())
+		fhand.close()
+elif option == '3':
+	file_name = input('Enter file name: ')
+	fhand = open(file_name,'a')
+	text = input('Enter what you want to write: ')
+	fhand.write(text)
+	fhand.close()
+elif option == '4':
+	file_name = input('Enter file name: ')
+	fhand = open(file_name)
+	text = fhand.readlines()
+	for i in range(1,len(text)+1):
+		print(i,text[i-1])
+else:
+	print('command not found')
+```
+
+## Task 38 use deep analysis of file handling to create a linux command similar to touch, explore atleast 5 features of touch command
+* Pending
+
+## Task 39 write a code that will take input from a user and check that if it is a command, then execute it with following  conditions : i)  all the commands given by user either wrong or right must be store in a file, ii)   output of success command will be shown to monitor,     iii)  if the input command is repeated by user give him voice note not to do this again
+```python
+#!/usr/bin/python3
+
+import os
+no_repeat = []
+for i in range(3):
+
+	command = input('Enter a command: ')
+	if command in no_repeat:
+		os.system("echo Don't Repeat the command again | festival --tts")
+	else:
+		no_repeat.append(command)
+		os.system(command+' 2>error.txt')
+		os.system(command+' &> command.txt')
+	os.system('rm -r error.txt')
+```
+
+## Task 40 write a code that will take user input untill number of character not exceeding, 500 chars.Now do the following  tasks: i)   print the number of repeated characters in descending order, ii)  print number of repeated words in descending order, iii)  if a word is repeating more than 5 times remove all those words, iv)  if a word is present only one times add the same word in that string but length must not increase more than 500 chars , you can remove any random thing for doing the same .
+```python
+!/usr/bin/python3
+
+from collections import Counter
+
+text = input('Enter some text: ')
+if len(text) > 500:
+	text = text[0:500]
+
+text_dict = dict(Counter(text))
+print('No of repeated characters: ')
+for i in sorted(text_dict,key=text_dict.get,reverse=True):
+	print(i,text_dict[i])
+
+word_dict = {}
+word_text = text.split()
+for i in word_text:
+	if i in word_dict:
+		word_dict[i] = word_dict[i] + 1
+	else:
+		word_dict[i] = 1
+for i in sorted(word_dict,key=word_dict.get,reverse=True):
+	print(i,word_dict[i])
+
+for i in word_dict.keys():
+	if word_dict[i] >5:
+		texts = text.split()
+		for j in range(word_dict[i]):
+			text.remove(i)
+		print(text)
+	if word_dict[i] == 1:
+		length = len(i)
+		if len(text)+length > 500:
+			text = text[0:500-length]
+			text = text + ' ' + i
+		else:
+			text = text + ' ' + i
+	print(text)
+
+```
+
+## Task 41 Problem 10: write socket programing code in  a single system with follow options, i)  make two files one for sender and another one for receiver, ii) press 1 for sending / receiving  text messages from both the side, iii)  press 2  sending file from sender and receiving from receiver
+* Pending
+
+## Task 42 write socket programing for chatting  between two systems with following options i)  sender only can start the message, ii)  receiver can send reply only of each message, iii) limit of message character length must not be exceed 150 characters ,iv)  if more than 150 char exceeded by users then print an error message, v)   give some option to quit the chat
+ ### Reciever
+```python
+#!/usr/bin/python2
+
+import socket
+re_ip="127.0.0.1"
+re_port=4484  # 0 - 1024 -- you can check free udp port : netstat -nulp
+
+# Creating UDP socket
+#		  ip type v4	   UDP
+s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+
+# fitting ip and port with UDP socket
+s.bind((re_ip,re_port))
+print "To Close communication reply the sender with a blank message"
+while(True):
+
+	# receiver data from sender
+	data=s.recvfrom(150)
+	print 'Server says: '+data[0]
+	text = raw_input('Client says: ')
+	if len(text) > 150:
+		print("Sorry, but message length exceeded")
+	else:
+		s.sendto(text,data[1])
+		if len(data[0]) == 0:
+			s.sendto('',data[1])
+			break
+
+s.close()
+```
+ ### sender
+```python
+!/usr/bin/python2
+
+import socket
+re_ip="127.0.0.1"
+re_port=4484  # 0 - 1024 -- you can check free udp port : netstat -nulp
+
+# Creating UDP socket
+#		  ip type v4	   UDP
+s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+print "To close communication send an blank message"
+# Sending data to target
+while(True):
+	text = raw_input('Server says: ')
+	if len(text) > 150:
+		print("Message limit exceeded")
+	else:
+		s.sendto(text,(re_ip,re_port))
+		data = s.recvfrom(100)
+		print 'Client says: '+data[0]
+		re_ip,re_port = data[1]
+		if len(data[0]) == 0:
+			s.sendto('',(re_ip,re_port))
+			break
+s.close()
+```
+
+## Task 43 write a python code to do the following-> i)  take input from user and search in google, ii)   pick the first 3 url of google search, iii)  make  QR-code of all 3 url's, iv)   Store all these qr-code in  apache web server in aws cloud, v)   share link of qrcode using aws public IP
+```python
+!/usr/bin/python3
+from googlesearch import search
+import pyqrcode
+url = input('Enter text to search')
+urllist = []
+u = 0
+for i in search(url,stop=3):
+	urllist.append(i)
+	print(i)
+
+# Generate a QR
+	qr = pyqrcode.create(i)
+# create and save file
+	qr.svg(f"qr{u}.svg",scale=2)
+	print(qr.terminal())
+	u = u+1
+```
+
+## Task 44 Do the following  settings in your redhat 7.5, i)  your system must not be able install a software telnet using yum, ii) your yum url have that telnet package it must not be install
+  Solution
+  ```
+   $ sudo yum-config-manager --disable tel
+  ```  
+  This will permanently disable the 'tel' repo which contains the url for telnet package.
