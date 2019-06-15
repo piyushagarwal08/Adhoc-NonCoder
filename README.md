@@ -357,6 +357,8 @@ elif hr>=20 and hr<24:
 else:
 	print('Good Morning',name)
 ```
+# DAY 9
+Notes for Day 7 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY9.md) in detail
 
 ## Task 37 use file handling to create a linux command  similar to cat .test at least  4 cases and options of cat command, compare the difference of cat command and post the result
 ```python
@@ -458,6 +460,8 @@ for i in word_dict.keys():
 	print(text)
 
 ```
+# DAY 10
+Notes for Day 7 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY 10.md) in detail
 
 ## Task 41 Problem 10: write socket programing code in  a single system with follow options, i)  make two files one for sender and another one for receiver, ii) press 1 for sending / receiving  text messages from both the side, iii)  press 2  sending file from sender and receiving from receiver
 * Pending
