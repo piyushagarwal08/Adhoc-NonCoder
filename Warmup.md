@@ -65,3 +65,39 @@
     * yum-config-manager --enable remi-php70
     * yum install php php-mcrypt php-cli php-gd php-curl php-mysql php-ldap php-zip php-fileinfo
     * php -v
+
+## User Setup
+  * change default home directory to /home2
+    nano /etc/default/useradd
+    HOME=/home2
+  * useradd blu
+  * mkdir /home2/public_html
+
+## Virtual Host Configuration
+  * cd /etc/httpd/conf.d
+  * nano blu-php.conf
+  ```
+  <VirtualHost *:80>
+    ServerName example.com
+    ServerAlias www.example.com
+    ServerAdmin webmaster@example.com
+    DocumentRoot /var/www/example.com/public_html
+
+    <Directory /var/www/example.com/public_html>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+    </Directory>
+
+    ErrorLog /var/log/httpd/example.com-error.log
+    CustomLog /var/log/httpd/example.com-access.log combined
+</VirtualHost>
+```
+  * nano /var/log/httpd/blu-adhocnw.com-error.log
+  * nano /var/log/httpd/blu-adhocnw.com-access.log
+  * https://linuxize.com/post/how-to-set-up-apache-virtual-hosts-on-centos-7/
+  * apachectl configtest
+  ```
+  Syntax OK
+  ```
+  * systemctl restart httpd
+  
