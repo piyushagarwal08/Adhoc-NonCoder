@@ -58,7 +58,7 @@
       * systemctl restart httpd.service
       * systemctl reload httpd.service
       * apachectl graceful
-
+      * add port 443 https in inbound of security of your instance
   # PHP
     * yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     * yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
@@ -100,4 +100,8 @@
   Syntax OK
   ```
   * systemctl restart httpd
+  * changing DocumentRoot in ```/etc/httpd/conf/httpd.conf``` from
+  /var/www/html to /home2/public_html and
+  /var/www to /home2
+  * now http://ip/page_in_public_html will be shown
   

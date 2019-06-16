@@ -228,7 +228,7 @@ for i in range(100):
   os.system("touch file"+str(i))
 ```
 
-## Task 26 write a program to list number of users present in linux based os
+## Task 26 write a program to list number of users present in linux based os (RECHECK)
 *   It can be done by using code
 ```python
 import os
@@ -358,7 +358,7 @@ else:
 	print('Good Morning',name)
 ```
 # DAY 9
-Notes for Day 7 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY9.md) in detail
+Notes for Day 9 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY9.md) in detail
 
 ## Task 37 use file handling to create a linux command  similar to cat .test at least  4 cases and options of cat command, compare the difference of cat command and post the result
 ```python
@@ -461,7 +461,7 @@ for i in word_dict.keys():
 
 ```
 # DAY 10
-Notes for Day 7 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY 10.md) in detail
+Notes for Day 10 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY 10.md) in detail
 
 ## Task 41 Problem 10: write socket programing code in  a single system with follow options, i)  make two files one for sender and another one for receiver, ii) press 1 for sending / receiving  text messages from both the side, iii)  press 2  sending file from sender and receiving from receiver
 * Pending
@@ -525,6 +525,9 @@ while(True):
 			break
 s.close()
 ```
+# DAY 11
+Notes for Day 11 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY 11.md) in detail
+
 
 ## Task 43 write a python code to do the following-> i)  take input from user and search in google, ii)   pick the first 3 url of google search, iii)  make  QR-code of all 3 url's, iv)   Store all these qr-code in  apache web server in aws cloud, v)   share link of qrcode using aws public IP
 ```python
@@ -552,3 +555,18 @@ for i in search(url,stop=3):
    $ sudo yum-config-manager --disable tel
   ```  
   This will permanently disable the 'tel' repo which contains the url for telnet package.
+
+# DAY 12
+Notes for Day 12 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY12.md) in detail
+
+# DAY 13
+Notes for Day 13 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY13.md) in detail
+
+# DAY 14
+Notes for Day 14 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY14.md) in detail
+
+## Task 45 Create your own module with following options : i)   after  importing  it must say your name in voice, ii)   it must greet you according to current time, for example:  if it is morning 9 AM it must say  good morning,  iii)  it must offer for adding  numbers as per user need, iv)   it also offer sorting of numbers, v)    it can also print number of installed module
+ * pending
+
+## Task 46 Adhocdocker1: i)   create your own docker image, ii)  it must use 80 port, iii)  host  a php  based sample web page, iv)   container must be running  on top of aws cloud
+ * pending
