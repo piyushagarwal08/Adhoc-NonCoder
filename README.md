@@ -464,8 +464,101 @@ for i in word_dict.keys():
 Notes for Day 10 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY 10.md) in detail
 
 ## Task 41 Problem 10: write socket programing code in  a single system with follow options, i)  make two files one for sender and another one for receiver, ii) press 1 for sending / receiving  text messages from both the side, iii)  press 2  sending file from sender and receiving from receiver
-* Pending
+ ### Receiver
+ ```python
+ #!/usr/bin/python2
 
+ import socket
+ re_ip="127.0.0.1"
+ re_port=4484  # 0 - 1024 -- you can check free udp port : netstat -nulp
+
+ # Creating UDP socket
+ #		  ip type v4	   UDP
+ s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+
+ # fitting ip and port with UDP socket
+ s.bind((re_ip,re_port))
+ print '1. text communication \n 2.file transfer'
+ option = input('Choose an option: ')
+ if option == 1:
+ 	print "To Close communication reply the sender with a blank message"
+ 	while(True):
+
+ 		# receiver data from sender
+ 		data=s.recvfrom(150)
+ 		print 'Server says: '+data[0]
+ 		text = raw_input('Client says: ')
+ 		if len(text) > 150:
+ 			print("Sorry, but message length exceeded")
+ 		else:
+ 			s.sendto(text,data[1])
+ 			if len(data[0]) == 0:
+ 				s.sendto('',data[1])
+ 				break
+
+ 	s.close()
+
+ elif option == 2:
+ 	print "only sender can send file and close connection"
+ 	while(True):
+ 		# receive file from sender
+ 		file_name  =  raw_input("File name to save data: ")
+ 		data=s.recvfrom(10000)
+ 		if len(data[0]) == 0:
+ 			break
+ 		file = open(file_name,'a+')
+ 		file.write(data[0])
+
+
+ 	s.close()
+
+ ```
+
+ ### Sender
+ ```python
+ #!/usr/bin/python2
+
+ import socket
+ re_ip="127.0.0.1"
+ re_port=4484  # 0 - 1024 -- you can check free udp port : netstat -nulp
+
+ # Creating UDP socket
+ #		  ip type v4	   UDP
+ s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+
+
+ print '1. text communication \n 2.file transfer'
+ option = input('Choose an option: ')
+ if option == 1:
+     print "To close communication send an blank message"
+     # Sending data to target
+     while(True):
+     	text = raw_input('Server says: ')
+     	if len(text) > 150:
+     		print("Message limit exceeded")
+     	else:
+     		s.sendto(text,(re_ip,re_port))
+     		data = s.recvfrom(100)
+     		if len(data[0]) == 0:
+     			s.sendto('',(re_ip,re_port))
+     			break
+     		print 'Client says: '+data[0]
+     		re_ip,re_port = data[1]
+     s.close()
+ elif option == 2:
+     print "To close communication send an blank message"
+     # Sending file to target
+     while(True):
+     	file_name = raw_input('Enter file name to send: ')
+     	if len(file_name) == 0:
+     		s.sendto('',(re_ip,re_port))
+     		break
+     	f = open(file_name)
+     	s.sendto(f.read(),(re_ip,re_port))
+
+     s.close()
+
+ ```
 ## Task 42 write socket programing for chatting  between two systems with following options i)  sender only can start the message, ii)  receiver can send reply only of each message, iii) limit of message character length must not be exceed 150 characters ,iv)  if more than 150 char exceeded by users then print an error message, v)   give some option to quit the chat
  ### Reciever
 ```python
@@ -534,6 +627,7 @@ Notes for Day 11 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-S
 !/usr/bin/python3
 from googlesearch import search
 import pyqrcode
+import os
 url = input('Enter text to search')
 urllist = []
 u = 0
@@ -547,6 +641,10 @@ for i in search(url,stop=3):
 	qr.svg(f"qr{u}.svg",scale=2)
 	print(qr.terminal())
 	u = u+1
+for i in range(3):
+  os.system(f'mv qr{u}.svg /var/www/html')
+
+# you can check for QR code by typing url http://my-instance-ip/qr0.svg
 ```
 
 ## Task 44 Do the following  settings in your redhat 7.5, i)  your system must not be able install a software telnet using yum, ii) your yum url have that telnet package it must not be install
@@ -566,7 +664,45 @@ Notes for Day 13 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-S
 Notes for Day 14 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY14.md) in detail
 
 ## Task 45 Create your own module with following options : i)   after  importing  it must say your name in voice, ii)   it must greet you according to current time, for example:  if it is morning 9 AM it must say  good morning,  iii)  it must offer for adding  numbers as per user need, iv)   it also offer sorting of numbers, v)    it can also print number of installed module
- * pending
+ ```python
+ import pyttsx3
+ import time
+ import os
+
+ def speak(x):
+     tts = pyttsx3.init()
+     tts.say(x)
+     tts.runAndWait()
+ speak('Welcome Pykid')
+
+ def greet(x):
+     if hour < 12:
+         return 'good morning'
+     elif hour < 16 and hour >= 12:
+         return 'good afternoon'
+     elif hour <20 and hour >= 16:
+         return "good evening"
+     else:
+         return "good night"
+ hour=time.localtime().tm_hour
+ wish = greet(hour)
+ speak(wish)
+ print('''
+ 1. type add(4,5,3,6) to add any amount of numbers
+ 2. type sort_num(4,5,3,5,2,4) to sort list of numbers
+ 3. type module() to list installed modules
+ ''')
+
+ def add(*x):
+     return sum(x)
+
+
+ def sort_num(*x):
+     return sorted(x)
+
+ def module():
+     os.system('pip3 list')
+ ```
 
 ## Task 46 Adhocdocker1: i)   create your own docker image, ii)  it must use 80 port, iii)  host  a php  based sample web page, iv)   container must be running  on top of aws cloud
  * pending
