@@ -80,7 +80,7 @@ From: piyushagarwal.0108@gmail.com (Piyush Agarwal)
     2. set HOME=/home2
   * useradd blu
   * passwd -d blu   # delete password
-  * mkdir /home2/public_html
+  * mkdir /home2/blu/public_html
 
 ## Virtual Host Configuration
   * cd /etc/httpd/conf.d
