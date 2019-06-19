@@ -725,7 +725,57 @@ Notes for Day 14 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-S
  ```
 
 ## Task 48 Generate 3x2 and 2x5  2D array with random element and save this data into two seperate files and print the data
- * Pending
+ ```python
+ import numpy as np
+
+ a = np.random.random_integers(low=1,high=100,size=(3,2))
+ b = np.random.random_integers(low=1,high=100,size=(2,5))
+ np.savetxt('3x2.csv',a)
+ np.savetxt('2x5.csv',b)
+ print(a)
+ print(b)
+ ```
 
 ## Task 49 Revise numpy and matplotlib and revise requests module
- * pending
+ * done
+
+## Task 50 create 2D numpy  based array with given conditions: i)   take input from user in terms of dimension like (3x2 or 6x7), ii)   fill this numpy array with random number, iii)  store this array in a file
+ ```python
+ import numpy as np
+ row,column = input().split('x')
+ array1 = np.random.random((int(row),int(column)))
+ np.savetxt('array.txt',array1)
+ y = np.loadtxt('array.txt')
+ print(y)
+ ```
+
+## Task 51 create a numpy array of  8x2 as having number  in each cell between 100 and 200 such that difference between each element is 5
+ ```python
+ import numpy as np
+
+ x = np.arange(100,200,5)
+ x = x[0:16].reshape(8,2)
+ print(x)
+ ```
+
+## Task 52 visualize data graphs i)  take input from  a file where you have 4 rows and 5 columns, ii)  columns having - student_name , marks , age , contact , study_hours, iii)  visualize this data as pie chart, iv)  file name must  student.csv with all column separated by ','
+ ```python
+ import pandas as pd
+ import matplotlib.pyplot as plt
+
+ data = {'student_name': ['Piyush','Saksham','Shivam','Akshay'],'marks':[76,89,96,99],'age':[20,20,21,21],'contact':['8749573948','3847563947','7480384729','9485736402'],'study_hours':[10,6,8,23]}
+
+ student = pd.DataFrame(data,columns=['student_name','marks','age','contact','study_hours'])
+ print(student)
+ plt.pie(student['marks'],labels=student['student_name'])
+ ```
+
+## Task 53 Generate 3x2 and 2x5  2D array with random element and save this data into two seperate files and print the data
+ ```python
+ a = np.random.random_integers(low=1,high=100,size=(3,2))
+ print(a)
+ b = np.random.random_integers(low=1,high=100,size=(2,5))
+ print(b)
+ np.savetxt('3x2.csv',a)
+ np.savetxt('2x5.csv',b)
+ ```
