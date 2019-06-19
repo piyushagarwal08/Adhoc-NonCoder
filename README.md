@@ -706,3 +706,26 @@ Notes for Day 14 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-S
 
 ## Task 46 Adhocdocker1: i)   create your own docker image, ii)  it must use 80 port, iii)  host  a php  based sample web page, iv)   container must be running  on top of aws cloud
  * pending
+
+## Task 47 take rows and column input from user and calculate how many rows and column combination are possible, factor of each number and find all possible array combination
+ ```python
+ #!/usr/bin/python3
+
+ from itertools import product
+ row =  int(input('Enter number of rows: '))
+ column = int(input('Enter number of columns: '))
+
+ def factor(x):
+ 	list1 = [i for i in range(1,x+1) if x % i == 0]
+ 	return list1
+ print('All possible array combinations are: ')
+ for i in product(factor(row),factor(column)):
+ 	print(i)
+
+ ```
+
+## Task 48 Generate 3x2 and 2x5  2D array with random element and save this data into two seperate files and print the data
+ * Pending
+
+## Task 49 Revise numpy and matplotlib and revise requests module
+ * pending
