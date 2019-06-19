@@ -15,6 +15,7 @@ From: piyushagarwal.0108@gmail.com (Piyush Agarwal)
   * fdisk -l - > check for disk name
   *  fdisk disk-name ( n,enter*)
 # LVM
+
   * yum install lvm2
   * pvcreate disk-name
   * pvdisplay disk-name
