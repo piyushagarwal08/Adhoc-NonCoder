@@ -7,10 +7,10 @@ yum update -y
 
 # LVM
 yum install lvm2 -y
-pvcreate /dev/xvdb
-pvdisplay disk-name
+pvcreate /dev/xvdf
+pvdisplay /dev/xvdf
 #Volume Group create
-vgcreate mystorage /dev/xvdb
+vgcreate mystorage /dev/xvdf
 vgdisplay mystorage
 
 #Lvm Create
@@ -70,7 +70,7 @@ mkdir /home2/blu/public_html
 chgrp apache /home2/blu/public_html
 chown blu /home2/blu/public_html/
 chmod 2771 /home2/blu/public_html/
-chmod 755 /home2
+chmod 755 /home2/blu/
 
 #Virtual Host Configuration
 vi /etc/httpd/conf.d/blu-php.conf
