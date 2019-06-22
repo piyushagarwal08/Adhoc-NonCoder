@@ -779,3 +779,55 @@ Notes for Day 14 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-S
  np.savetxt('3x2.csv',a)
  np.savetxt('2x5.csv',b)
  ```
+
+## Task 54 plot  graphs given below in python3 with following data, i) calculate the internet speed from any web site you want, ii)  graph the result as guage graph, iii) it must move as per the speed changes
+  * Pending
+
+## Task 55 use this data from pandas, i) data source http://13.234.66.67/summer19/datasets/bank.csv ii) read this data by pandas iii) plot all the possible graphs iv) use all possible combination of all columns
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+read = pd.read_csv('http://13.234.66.67/summer19/datasets/bank.csv')
+read.head(5)
+plt.pie(read['CustomerId'].head(5),labels=read['CreditScore'].head(5),explode=[0.1,0.2,0.1,0.2,0.1],shadow=True)
+plt.bar(read['Surname'].head(9),read['CreditScore'].head(9),label='Enjoy')
+plt.scatter(read['Surname'].head(9),read['CreditScore'].head(9),label='Enjoy')
+plt.plot(read['Surname'].head(9),read['CreditScore'].head(9),label='Enjoy')
+plt.hist2d(read['Balance'].head(9),read['CreditScore'].head(9),label='Enjoy')
+plt.hist(read['Surname'].head(9),label='Enjoy')
+plt.stackplot(read['Surname'].head(10),read['CreditScore'].head(10),read['Balance'].head(10),color=['b'])
+```
+
+## Task 56 write the code will follow conditions, i) scrape data of the url https://en.wikipedia.org/wiki/Machine_learning ii) count all the words after scraping iii) plot the pie and bar plot of top 20 repeated words iv) plot scatter graph of all the words having presence more 3 times in scraped data v) show stack plot of all the links that are present in above URL
+
+```python
+import requests
+from bs4 import BeautifulSoup
+url =  'https://en.wikipedia.org/wiki/Machine_learning'
+r = requests.get(url)
+html = r.text
+soup = BeautifulSoup(html, "html5lib")
+text = soup.get_text().rstrip()
+import nltk #natural language tool kit
+token = nltk.RegexpTokenizer('\w+') #creating an object to found words by regex \w+
+word_list = token.tokenize(text)   # list all words differently without any tags
+word = nltk.FreqDist(word_list)     # does the work of Counter and makes a dictionary
+nltk.FreqDist(word).plot(20)
+from matplotlib import pyplot as plt
+task = {}
+for i in sorted(word,key=word.get,reverse=True):
+
+  task[i] = word[i]
+keys = []
+values = []
+for i,j in task.items():
+  keys.append(i)
+  values.append(j)
+  if len(keys) == 20:
+    break
+# sorted the dictionary based on values and created two list of top 20 values
+plt.pie(values,labels=keys)
+```
+## Task 57 Study that what is ID3 and CART and graphviz.
+  * pending
