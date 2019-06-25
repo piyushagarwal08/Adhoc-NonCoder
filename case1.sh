@@ -1,3 +1,4 @@
+#!/bin/bash
 # make volume LVM type
 yum install lvm2 -y
 pvcreate /dev/xvdb /dev/xvdc
