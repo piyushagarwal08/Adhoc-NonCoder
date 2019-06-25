@@ -31,7 +31,7 @@ timedatectl set-timezone Asia/Kolkata
 
 # MOTD file
 # i will send the motd file using ansible or git
-mv motd.sh /etc/profile.d/
+#mv motd.sh /etc/profile.d/
 
 # update  everything 
 yum update -y
@@ -57,21 +57,12 @@ ln -s /opt/rh/rh-php70/root/usr/bin/php /usr/bin/php
 php -v
 
 # install MariaDB server
+cat <<EOF > /etc/yum.repos.d/mariadb.repo
+[mariadb]
+name=MariaDB
+baseurl=http://yum.mariadb.org/10.3/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+EOF
 
-
-
-
-
-
-
-
-## Not done yet
-#Setup Wordpress
-mkdir -p /home/centos/public_html
-
-wget -P /tmp https://wordpress.org/latest.tar.gz
-tar -xf /tmp/latest.tar.gz  -C  /home/centos/public_html/
-rm -rf  /tmp/latest.tar.gz
-mv /home/centos/public_html/wordpress/*   /home/centos/public_html/
-rm -rf  /home2/wp/public_html/wordpress/
-
+yum install MariaDB-server MariaDB-client -y 
