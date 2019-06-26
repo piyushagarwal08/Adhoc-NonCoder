@@ -836,4 +836,26 @@ plt.pie(values,labels=keys)
   * pending
 
 ## Task 59 write supervised  machine learning code to predict minimum death, Note:  find data of titanic from kaggle or any relevant datasource, apply supervised machine learning with your choice of classifier
-  * pending 
+  * pending
+
+## Task 60 write python code to connect with gmail,yahoo,outlook,hotmail and finds the top 10 messages / mail and copy its from email , subject, body into text files using this data classify mail to be spam or ham
+  ```python
+  import imaplib
+  import email
+
+  mail = imaplib.IMAP4_SSL('imap.gmail.com')
+  mail.login('hrssharma001@gmail.com','harshjatt12')
+  mail.select('INBOX')
+  result,data = mail.search(None,"ALL")
+  id_list = data[0].split()
+  latest_mail = id_list[-1]
+  result,data = mail.fetch(latest_mail,"(RFC822)")
+  raw_mail = data[0][1]
+  message = email.message_from_string(raw_mail)
+  with open('latest_mail.txt','w+') as file:
+      file.write(str(message))
+  print 'From: ' + message['From']
+  print 'To: ' + message['To']
+  print 'Subject: ' + message['Subject']
+
+  ```
