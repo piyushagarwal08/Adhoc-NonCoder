@@ -9,7 +9,8 @@ mkfs.xfs /dev/volumegroup1/mylvm1
 mkfs.xfs /dev/volumegroup2/mylvm2
 
 # Mount disk 2 on /home
-mount /dev/volumegroup1/mylvm1 /home
+mkdir /home2
+mount /dev/volumegroup1/mylvm1 /home2
 
 # Mount disk 3 on /var/lib/mysql
 mkdir /var/lib/mysql
