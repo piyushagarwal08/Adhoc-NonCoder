@@ -8,8 +8,9 @@ lvcreate --name mylvm2 --size 3.9G volumegroup2
 mkfs.xfs /dev/volumegroup1/mylvm1 
 mkfs.xfs /dev/volumegroup2/mylvm2
 
-# Mount disk 2 on /home
-mount /dev/volumegroup1/mylvm1 /home
+# Mount disk 2 on /home2
+mkdir /home2
+mount /dev/volumegroup1/mylvm1 /home2
 
 # Mount disk 3 on /var/lib/mysql
 mkdir /var/lib/mysql
@@ -17,9 +18,11 @@ mount /dev/volumegroup2/mylvm2 /var/lib/mysql
 
 # Entry in Fstab
 cat <<EOF >> /etc/fstab
-/dev/volumegroup1/mylvm1 /home xfs noexec 
+/dev/volumegroup1/mylvm1 /home2 xfs noexec 
 /dev/volumegroup2/mylvm2 /var/lib/mysql xfs noexec
 EOF
+umount /home2
+umount /var/lib/mysql
 mount -a
 
 # disable selinux
@@ -37,7 +40,7 @@ timedatectl set-timezone Asia/Kolkata
 yum update -y
 
 # Reboot server
-init 6
+#init 6
 
 # Install Apache 2.4x with ssl and proxy module support 
 yum install httpd httpd.server -y

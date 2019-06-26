@@ -834,4 +834,6 @@ plt.pie(values,labels=keys)
 
 ## Task 58 Design a UI in Html asking a button upload.The file it will accept is JSON CSV or EXCEL, When upload completes it will show the data in form of tables using pandas.It will ask from a dropdown regarding which algorithm to use, It will then ask for testing data percentage again in options menu, If the classifier is KNN then it should ask for K value, After clicking submit it will show a graph plotting the data either on bar Scatter pie ask from user at that point or in previous page.
   * pending
-  
+
+## Task 59 write supervised  machine learning code to predict minimum death, Note:  find data of titanic from kaggle or any relevant datasource, apply supervised machine learning with your choice of classifier
+  * pending 
