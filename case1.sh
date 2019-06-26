@@ -1,3 +1,4 @@
+#https://github.com/piyushagarwal08/Adhoc-NonCoder.git
 # make volume LVM type
 yum install lvm2 -y
 pvcreate /dev/xvdb /dev/xvdc
@@ -77,3 +78,32 @@ systemctl enable mariadb
 #to run mysql 
 #mysql -u root -p
 #password is secured non shareable
+
+# binding the mariadb server with loopback IP
+sed -i 's/#bind-address=0.0.0.0/bind-address=127.0.0.1/g' /etc/my.cnf.d
+
+#User Setup
+useradd -b /home2 wp
+useradd -b /home2 magento
+mkdir /home2/magento/.ssh
+touch /home2/magento/.ssh/authorized_keys
+chmod 600 /home2/magento/.ssh/authorized_keys
+chmod 700 /home2/magento/.ssh 
+mkdir /home2/wp/.ssh
+touch /home2/wp/.ssh/authorized_keys
+chmod 600 /home2/wp/.ssh/authorized_keys
+chmod 700 /home2/wp/.ssh
+
+#password less login
+ssh-keygen -N"" -f /home2/magento/.ssh/key
+cat /home2/magento/.ssh/key.pub >> /home2/magento/.ssh/authorized_keys
+
+ssh-keygen -N"" -f /home2/wp/.ssh/key
+cat /home2/wp/.ssh/key.pub >> /home2/wp/.ssh/authorized_keys
+
+mkdir /home2/{wp,magento}/public_html
+
+# change document root of magento and wp
+cp /etc/httpd/conf/httpd.conf /home2/wp/
+cp /etc/httpd/conf/httpd.conf /home2/magento/
+ 
