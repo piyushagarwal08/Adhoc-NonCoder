@@ -37,7 +37,7 @@ timedatectl set-timezone Asia/Kolkata
 yum update -y
 
 # Reboot server
-init 6
+#init 6
 
 # Install Apache 2.4x with ssl and proxy module support 
 yum install httpd httpd.server -y
