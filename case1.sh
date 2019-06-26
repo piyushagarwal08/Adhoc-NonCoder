@@ -66,3 +66,11 @@ gpgcheck=1
 EOF
 
 yum install MariaDB-server MariaDB-client -y 
+systemctl start mariadb
+systemctl enable mariadb
+
+#run mysql_secure_installation
+#configure all information
+#to run mysql 
+#mysql -u root -p
+#password is secured non shareable
