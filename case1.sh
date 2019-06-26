@@ -18,7 +18,7 @@ mount /dev/volumegroup2/mylvm2 /var/lib/mysql
 
 # Entry in Fstab
 cat <<EOF >> /etc/fstab
-/dev/volumegroup1/mylvm1 /home xfs noexec 
+/dev/volumegroup1/mylvm1 /home2 xfs noexec 
 /dev/volumegroup2/mylvm2 /var/lib/mysql xfs noexec
 EOF
 mount -a
