@@ -77,10 +77,26 @@ systemctl enable mariadb
 #configure all information
 #to run mysql 
 #mysql -u root -p
-#password is secured non shareable
+#password is secured non shareable redhat
 
 # binding the mariadb server with loopback IP
 sed -i 's/#bind-address=0.0.0.0/bind-address=127.0.0.1/g' /etc/my.cnf.d
+
+# Increasing the max_allowed_packet to 1G
+cat <<EOF >> /etc/my.cnf
+[mysqldump]
+max_allowed_packet=1G
+EOF
+
+# MYSQL REQUIREMENTS
+# open mariadb using 'mysql -u root -p' (pass: redhat)
+# CREATE DATABASE wp;
+# CREATE DATABASE magento;
+# USE wp;
+# GRANT ALL PRIVILEGES ON *.* TO wp@localhost IDENTIFIED BY 'redhat';
+# USE magento;
+# GRANT ALL PRIVILEGES ON *.* TO magento@localhost IDENTIFIED BY 'redhat1';
+
 
 #User Setup
 useradd -b /home2 wp
