@@ -6,7 +6,7 @@ vgcreate volumegroup1 /dev/xvdb
 vgcreate volumegroup2  /dev/xvdc
 lvcreate --name mylvm1 --size 3.9G volumegroup1
 lvcreate --name mylvm2 --size 3.9G volumegroup2
-mkfs.xfs /dev/volumegroup1/mylvm1 
+mkfs.xfs /dev/volumegroup1/mylvm1
 mkfs.xfs /dev/volumegroup2/mylvm2
 
 # Mount disk 2 on /home2
@@ -19,7 +19,7 @@ mount /dev/volumegroup2/mylvm2 /var/lib/mysql
 
 # Entry in Fstab
 cat <<EOF >> /etc/fstab
-/dev/volumegroup1/mylvm1 /home2 xfs noexec 
+/dev/volumegroup1/mylvm1 /home2 xfs noexec
 /dev/volumegroup2/mylvm2 /var/lib/mysql xfs noexec
 EOF
 umount /home2
@@ -30,20 +30,20 @@ mount -a
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
 setenforce 0
 
-# Set timezone to IST 
+# Set timezone to IST
 timedatectl set-timezone Asia/Kolkata
 
 # MOTD file
 # i will send the motd file using ansible or git
 #mv motd.sh /etc/profile.d/
 
-# update  everything 
+# update  everything
 yum update -y
 
 # Reboot server
 #init 6
 
-# Install Apache 2.4x with ssl and proxy module support 
+# Install Apache 2.4x with ssl and proxy module support
 yum install httpd httpd.server -y
 systemctl start httpd.service
 systemctl enable httpd.service
@@ -51,7 +51,7 @@ yum install mod_ssl openssl -y
 
 # Install php and all modules
 yum install centos-release-scl -y
-yum install rh-php70-php rh-php70-php-common rh-php70-php-cli rh-php70-php-devel rh-php70-php-gd rh-php70-php-json rh-php70-php-mbstring rh-php70-php-mysqlnd rh-php70-php-opcache rh-php70-php-zip -y  
+yum install rh-php70-php rh-php70-php-common rh-php70-php-cli rh-php70-php-devel rh-php70-php-gd rh-php70-php-json rh-php70-php-mbstring rh-php70-php-mysqlnd rh-php70-php-opcache rh-php70-php-zip -y
 
 # setting up links
 ln -s /opt/rh/httpd24/root/etc/httpd/conf.d/rh-php70-php.conf /etc/httpd/conf.d/
@@ -69,13 +69,13 @@ gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1
 EOF
 
-yum install MariaDB-server MariaDB-client -y 
+yum install MariaDB-server MariaDB-client -y
 systemctl start mariadb
 systemctl enable mariadb
 
 #run mysql_secure_installation
 #configure all information
-#to run mysql 
+#to run mysql
 #mysql -u root -p
 #password is secured non shareable redhat
 
@@ -104,7 +104,7 @@ useradd -b /home2 magento
 mkdir /home2/magento/.ssh
 touch /home2/magento/.ssh/authorized_keys
 chmod 600 /home2/magento/.ssh/authorized_keys
-chmod 700 /home2/magento/.ssh 
+chmod 700 /home2/magento/.ssh
 mkdir /home2/wp/.ssh
 touch /home2/wp/.ssh/authorized_keys
 chmod 600 /home2/wp/.ssh/authorized_keys
@@ -122,4 +122,50 @@ mkdir /home2/{wp,magento}/public_html
 # change document root of magento and wp
 cp /etc/httpd/conf/httpd.conf /home2/wp/
 cp /etc/httpd/conf/httpd.conf /home2/magento/
- 
+
+# virtual host configuration of wp
+cat <<EOF > /etc/httpd/conf.d/wp.conf
+<VirtualHost *:80>
+  ServerName piyushagarwal-wp.adhocnw.com
+  DocumentRoot /home2/wp/public_html/
+  <Directory /home2/wp/public_html/>
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride All
+      Order allow,deny
+      allow from all
+    Require all granted
+  </Directory>
+  ErrorLog /home2/wp/error.log
+  CustomLog /home2/wp/access.log combined
+</VirtualHost>
+EOF
+
+# virtual host configuration of magento
+cat <<EOF > /etc/httpd/conf.d/magento.conf
+<VirtualHost *:80>
+  ServerName piyushagarwal-magento.adhocnw.com
+  DocumentRoot /home2/magento/public_html/
+  <Directory /home2/magento/public_html/>
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride All
+      Order allow,deny
+      allow from all
+    Require all granted
+  </Directory>
+  ErrorLog /home2/magento/error.log
+  CustomLog /home2/magento/access.log combined
+</VirtualHost>
+EOF
+
+# permissions for home and public_html
+chmod 711 /home2
+chmod 755 /home2/wp/public_html
+chmod 755 /home2/magento/public_html
+
+# Allow multiple user directory access
+cat << EOF >> /etc/httpd/conf/httpd.conf
+<IfModule mod_userdir.c>
+    UserDir enabled all
+    UserDir public_html
+</IfModule>
+EOF
