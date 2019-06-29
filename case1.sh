@@ -111,10 +111,10 @@ chmod 600 /home2/wp/.ssh/authorized_keys
 chmod 700 /home2/wp/.ssh
 
 #password less login
-ssh-keygen -N"" -f /home2/magento/.ssh/key
+ssh-keygen -N "" -f /home2/magento/.ssh/key
 cat /home2/magento/.ssh/key.pub >> /home2/magento/.ssh/authorized_keys
 
-ssh-keygen -N"" -f /home2/wp/.ssh/key
+ssh-keygen -N "" -f /home2/wp/.ssh/key
 cat /home2/wp/.ssh/key.pub >> /home2/wp/.ssh/authorized_keys
 
 mkdir /home2/{wp,magento}/public_html
@@ -162,10 +162,16 @@ chmod 711 /home2
 chmod 755 /home2/wp/public_html
 chmod 755 /home2/magento/public_html
 
-# Allow multiple user directory access
-cat << EOF >> /etc/httpd/conf/httpd.conf
-<IfModule mod_userdir.c>
-    UserDir enabled all
-    UserDir public_html
-</IfModule>
-EOF
+# Wordpress Setup
+wget -P /tmp https://wordpress.org/latest.tar.gz
+tar -xf /tmp/latest.tar.gz  -C  /home2/wp/public_html/
+rm -rf  /tmp/latest.tar.gz
+mv /home2/wp/public_html/wordpress/*   /home2/wp/public_html/
+rm -rf  /home2/wp/public_html/wordpress/wget -P /tmp https://wordpress.org/latest.tar.gz
+
+# Magento Setup 
+wget -P /tmp https://github.com/magento/magento2/archive/2.1.0.tar.gz
+tar -xf /tmp/2.1.0.tar.gz -C /home2/magento/public_html/
+mv /home2/magento/public_html/magento2-2.1.0/* /home2/magento/public_html/
+mv /home2/magento/public_html/magento2-2.1.0/.htaccess /home2/magento/public_html/
+rm -rf /home2/magento/public_html/magento2-2.1.0
