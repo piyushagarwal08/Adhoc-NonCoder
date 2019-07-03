@@ -163,11 +163,16 @@ chmod 755 /home2/wp/public_html
 chmod 755 /home2/magento/public_html
 
 # Wordpress Setup
+# download files
 wget -P /tmp https://wordpress.org/latest.tar.gz
 tar -xf /tmp/latest.tar.gz  -C  /home2/wp/public_html/
 rm -rf  /tmp/latest.tar.gz
 mv /home2/wp/public_html/wordpress/*   /home2/wp/public_html/
 rm -rf  /home2/wp/public_html/wordpress/wget -P /tmp https://wordpress.org/latest.tar.gz
+# install Wordpress
+mv /home2/wp/public_html/wp-config-sample.php /home2/wp/public_html/wp-config.php
+# enter database details 
+# filled the details myself
 
 # Magento Setup 
 wget -P /tmp https://github.com/magento/magento2/archive/2.1.0.tar.gz
