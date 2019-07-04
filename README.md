@@ -836,7 +836,38 @@ plt.pie(values,labels=keys)
   * pending
 
 ## Task 59 write supervised  machine learning code to predict minimum death, Note:  find data of titanic from kaggle or any relevant datasource, apply supervised machine learning with your choice of classifier
-  * pending
+```python
+from sklearn.preprocessing import Imputer
+from sklearn.preprocessing import LabelEncoder
+import pandas as pd
+train = pd.read_csv('train.csv')
+test = pd.read_csv('test.csv')
+test_survived = pd.read_csv('gender_submission.csv')
+train.head(1)
+test.head(1)
+test_survived.head(2)
+option1 = train.iloc[0:,[0,5]].values
+option1_test = test.iloc[0:,[0,4]].values
+imp = Imputer(missing_values = 'NaN',axis=0,strategy='mean')
+LE = LabelEncoder()
+option1 = imp.fit_transform(option1)
+option1_test = imp.fit_transform(option1_test)
+option1_survived = train.iloc[0:,1].values
+option1_test_survived = test_survived.iloc[0:,1].values
+option1_survived
+option1_test_survived
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier()
+trained = clf.fit(option1,option1_survived)
+predict = trained.predict(option1_test)
+predict
+from sklearn.metrics import accuracy_score
+accuracy_score(predict,option1_test_survived)
+predict_death=len([i for i in predict if i == 0])
+actual_death = len([i for i in option1_test_survived])
+predict_death,actual_death
+
+```
 
 ## Task 60 write python code to connect with gmail,yahoo,outlook,hotmail and finds the top 10 messages / mail and copy its from email , subject, body into text files using this data classify mail to be spam or ham
   ```python
