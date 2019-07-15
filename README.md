@@ -16,7 +16,8 @@ Notes for Day 1 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST
 *   When we delete a file it basically clears the entry of the file in inode table. Which means that the data of the file exist but it is not accessible without the inode table entry.
 
 ## Task 4 Create a 5GB file and copy it 3 Times, but take size only 1 time
-*   Pending
+*   It can be done easily by rhel 8 technology that is VDO or Virtual Disk Optimizer
+* VDO maintains the duplicacy of data in its directory
 
 ## Task 5 What happened on Spetember 1752
 *   The julian calender is 365.25 days long while the perfect Gregorian calender is precisely 365.24219 days long, which means that when the britishers adopted the gee.. calender they are 13 days ahead of the gee.. calender as such on September 03 1752 the britishers ommit 13 days from thier calender and since now we have these empty 13 days not showing in our system calender.
@@ -181,7 +182,8 @@ Notes for Day 5 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST
 *   Pending
 
 ## Task 20 How to remove read and write permission from a file or directory for root or admin user
-*   Pending
+*  It can be done by Access Control List
+* we can run ```setfacl -m u:root:--- file/directory-name```
 
 ## Task 21 List how many people are in a group find that list
 *   To find this there is a command called ```lid``` for this.
