@@ -890,3 +890,121 @@ predict_death,actual_death
   print 'Subject: ' + message['Subject']
 
   ```
+## Task 61 ,1 take  two image of same dimension, 2.cut the same part of image and replace it with each other, 3.  replace some random with 10 rows and 20 columns
+```python
+import cv2
+
+# reading image data
+image1 = cv2.imread('/home/pykid/Desktop/test1.jpeg')
+image2 = cv2.imread('/home/pykid/Desktop/test2.jpeg')
+
+
+# finding head of character
+head1 = image1[32:132,26:136].copy() # (100,110)
+head2 = image2[26:126,29:139].copy() # (100,110)
+
+# replacing the heads of both characters
+image1[32:132,26:136] = head2
+image2[26:126,29:139] = head1
+
+# display the altered image
+cv2.imshow('image1',image1)
+cv2.imshow('image2',image2)
+
+# replacing some 10 rows and 20 columns of image2 with that of image 1
+image2[40:50,134:154] = image1[87:97,27:47].copy()
+cv2.imshow('random',image2)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+## Task 62 1. zoom out a particular area of any image, 2. except that particular area zoom out the rest part ,3.  merge two image in a single window
+```python
+#!/usr/bin/python3
+import cv2
+import numpy as np
+
+# loading image
+image = cv2.imread('/home/pykid/Desktop/test1.jpeg',1)
+imagex = cv2.imread('/home/pykid/Desktop/test2.jpeg')
+
+# printing the shape
+print(image.shape)
+
+def CallBackFunc(event,x,y,flags,params):
+    # on hovering it collects the position of mouse
+    if event == cv2.EVENT_LBUTTONDOWN:
+        print(f" left button of mouse - position ({x},{y})")
+        printx(x,y)
+
+def printx(a,b):
+    crop_img = image[a-20:a+20,b:b+40] # cropping a part of image based on mouse click
+    image1 = cv2.resize(crop_img,(500,500),fx=1.5,fy=1.5,interpolation=cv2.INTER_CUBIC)
+    cv2.imshow('zoomed',image1)
+
+cv2.imshow('original image',image)
+cv2.setMouseCallback('original image',CallBackFunc)
+
+# Merging two images in a single window
+merged = cv2.add(image,imagex)
+cv2.imshow('merged',merged)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+## Task 63 1. find the difference between two images, 2. add two image and make a single image
+```python
+import cv2
+import numpy as np
+
+image1 = cv2.imread('/home/pykid/Desktop/test1.jpeg')
+
+image2 = cv2.imread('/home/pykid/Desktop/test2.jpeg')
+
+image3 = image2.copy()
+
+# difference is of 2 types
+# absolute difference and subtract
+# | x - y |                x - y
+difference = cv2.absdiff(image2,image1)
+subtract = cv2.subtract(image1,image2)
+
+
+cv2.imshow('image1',image1)
+cv2.imshow('image2',image2)
+cv2.imshow('difference',difference)
+cv2.imshow('subtrcat',subtract)
+
+# making a single image by adding two images
+output = np.concatenate((image3,image2),axis=1)
+cv2.imshow('added two images',output)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+
+## Task 64  take picture of a news paper of any wall paper by opencv ,extract  text only from  their  ,save all these text in row format into a file like , csv , pdf ,apply stopwords removal and count most frequent words, plot graph of the same
+
+
+## Task 65 take reviews of any of the make my trip application, process them with NLP ,find  the sentiment about those reviews, recommend the similar app that  can provide the same
+
+
+## Task 66 extract email from gmail or any other smtp server, pick the body part of email and save into a file,apply NLP here ,use stemming  to decide the spam and ham about email, if it is spam the you can delete it , run this problem 5 times in a day and analyse  number of spam and ham ,pick top 10 email only in each time , make sure you are running  program in 5 different times ,plot the graph of success of the program and spam , ham count as well
+
+
+## Task 67   Scrape this histroy of the player ,choose batsman and find run score by bats man in every inning, maintain the list of number balls and number of runs , now create a polynomial or linear model , create a polynomail based model so that it can be decided on average number of balls how many runs will be scored by any batsman.
+
+
+## Task 68 Ansible   How to check which python version used by ansible ,check python version used by ansible and store output in a file, name to module of ansible you used for checking , How to change ansible default inventory file location, how to list all the host available using ansible command line
+
+
+## Task 69 Ansible write ansible playbook to automate following  things under a single play, write playbook to  install httpd web server on remote host ,remote user is  devops ,local user is  student , run playbook from /home/student/playbook, make sure  you are not using default ansible configuration file , copy a file  abc.html  to target machine by the name index.html , owner of index.html must be apache , abc.html is located at  /home/student/playbook/files/, start httpd service and make sure it is persistent , start firewalld service and make sure it is persistent , maintain firewall rule in that way so that we can access web page  , Note :    you can setup all required things first manually  then write playbook
+
+
+## Task 70 repeat the same playbook in multiple play, make sure each task must have its different play
+
+
+## Task 71 write a playbook to perform things given below, define 3 variable inside your playbook under vars section  ```x:  httpd ,  y:  firewalld ,  z:  php``` , install all these package in remote host, make sure  you have local user student and remote user devops, start all required services on remote host, copy any dummy page to /var/www/html, page must be index.php  , apply firewall rules to access that php page
