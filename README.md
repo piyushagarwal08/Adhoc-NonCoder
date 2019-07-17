@@ -103,7 +103,25 @@ apt-get install alacarte
 *   Since now the application will not open from icon it will be opened by the terminal only until you fix that again.
 
 ## Task 14 How to write hello World in a directory
-*   Pending
+*  Note -> directory is a kind of file that is used to map different inode no (files)
+* we can not write something as a text in a directory as it is designed to store other files
+* but we can add some extra file or directory information just like ACL permissions
+* the above task can be done using ```setfattr``` command which is to declare new attribute or information within meta data of file
+* run command
+```shell
+mkdir task
+setfattr -n user.text -v "Hello World!" task
+```
+* to check the value , run command
+
+```shell
+getfattr -n user.text hello
+
+output :
+# file: hello
+user.text="Hello World"
+```
+
 
 ## Task 15 No of lines word characters count in python
 *   To do this task you should have knowledge about file handling and string functions.
