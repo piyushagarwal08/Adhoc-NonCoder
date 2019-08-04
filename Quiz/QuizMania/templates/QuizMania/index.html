@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Adhoc Quizmania</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{% static 'QuizMania/img/favicon.png'%}" rel="icon">
+  <link href="{% static 'QuizMania/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Bootstrap css -->
+  <!--link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"-->
+  <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+  <link href="{% static 'QuizMania/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i" rel="stylesheet">
+
+  <!-- Bootstrap css -->
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'QuizMania/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'QuizMania/lib/owlcarousel/assets/owl.theme.default.min.css' %}" rel="stylesheet">
+  <link href="{% static 'QuizMania/lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'QuizMania/lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'QuizMania/lib/modal-video/css/modal-video.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'QuizMania/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: eStartup
+    Theme URL: https://bootstrapmade.com/estartup-bootstrap-landing-page-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+  <header id="header" class="header header-hide">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#body" class="scrollto"><span>Q</span>mania</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Hero Section
+  ============================-->
+  <section id="hero" class="wow fadeIn">
+    <div class="hero-container">
+      <h1>Welcome to Quiz Mania</h1>
+      <h2></h2>
+      <img src="{% static 'QuizMania/img/hero-img.png' %}" alt="Hero Imgs">
+      <a href="#features" class="btn-get-started scrollto">Get Started</a>
+      <div class="btns">
+
+      </div>
+    </div>
+  </section><!-- #hero -->
+
+
+  <!--==========================
+    Features Section
+  ============================-->
+
+  <section id="features" class="padd-section text-center wow fadeInUp">
+
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>Quiz Board</h2>
+        <p class="separator">choose the technology below</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+		  <img src="{% static 'QuizMania/img/docker.svg' %}" alt="img" class="img-fluid">
+            <h4>Docker</h4>
+            <p onclick="window.location.href='http://localhost:8000/1'">Docker is a set of coupled software-as-a-service and platform-as-a-service products that use operating-system-level virtualization to develop and deliver software in packages called containers. The software that hosts the containers is called Docker Engine. </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+
+		  <img src="{% static 'QuizMania/img/AWS.jpg' %}" width="85" height="90">
+            <br>
+            <h4>Ansible</h4>
+            <p onclick="window.location.href='http://localhost:8000/2'"">Ansible is an open-source software provisioning, configuration management, and application-deployment tool. It runs on many Unix-like systems, and can configure both Unix-like systems as well as Microsoft Windows. It includes its own declarative language to describe system configuration.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+		  <img src="{% static 'QuizMania/img/redhat.jpg' %}" height="90" width="85">
+
+            <h4>Redhat</h4>
+
+            <p onclick="window.location.href='http://localhost:8000/3'">Red Hat was founded on March 26, 1993. Red Hat got its name from founder Marc Ewing who wore a red Cornell University lacrosse hat, given to him by his grandfather, while attending Carnegie Mellon University</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+		  <img src="{% static 'QuizMania/img/python.jpeg' %}" alt="img" class="img-fluid">
+            <h4>Python</h4>
+            <p onclick="window.location.href='http://localhost:8000/4'">Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python's design philosophy emphasizes code readability with its notable use of significant whitespace. </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+		  <img src="{% static 'QuizMania/img/tensorflow.jpeg' %}" alt="img" class="img-fluid">
+            <h4>Tensorflow</h4>
+            <p onclick="window.location.href='http://localhost:8000/5'">TensorFlow is a free and open-source software library for dataflow and differentiable programming across a range of tasks. It is a symbolic math library, and is also used for machine learning applications such as neural networks.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+		  <img src="{% static 'QuizMania/img/computer_vision.jpeg' %}" alt="img" class="img-fluid">
+            <h4>Computer Vision</h4>
+            <p onclick="window.location.href='http://localhost:8000/6'">Computer vision is an interdisciplinary scientific field that deals with how computers can be made to gain high-level understanding from digital images or videos. From the perspective of engineering, it seeks to automate tasks that the human visual system can do.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+		  <img src="{% static 'QuizMania/img/kubernetes.png' %}" alt="img" class="img-fluid">
+            <h4>Kubernetes</h4>
+            <p onclick="window.location.href='http://localhost:8000/7'">Kubernetes is an open-source container-orchestration system for automating application deployment, scaling, and management. It was originally designed by Google, and is now maintained by the Cloud Native Computing Foundation. </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-block">
+		  <img src="{% static 'QuizMania/img/svg/code.svg' %}" alt="img" class="img-fluid">
+            <h4>Scikit learn</h4>
+            <p onclick="window.location.href='http://localhost:8000/8'">Scikit-learn provides a range of supervised and unsupervised learning algorithms via a consistent interface in Python.The library is built upon the SciPy (Scientific Python) that must be installed before you can use scikit-learn.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'QuizMania/lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'QuizMania/lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'QuizMania/lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'QuizMania/lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'QuizMania/lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'QuizMania/lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'QuizMania/lib/modal-video/js/modal-video.js' %}"></script>
+  <script src="{% static 'QuizMania/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'QuizMania/lib/wow/wow.min.js' %}"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static 'QuizMania/contactform/contactform.js' %}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'QuizMania/js/main.js' %}"></script>
+  
+</body>
+</html>
