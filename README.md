@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
 # Day 2
 Notes for Day 2 are mentioned [here](https://github.com/piyushagarwal08/Adhoc-ST-2019-/blob/master/DAY%202.md) in detail.
-## Task 9 Display history with time in linux
+## Task 9 Display history with time in linux.
 * Run the below command in your terminal or paste this in ```.bashrc```
 ```
 export HISTTIMEFORMAT='%F %T %t'
